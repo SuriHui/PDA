@@ -21,22 +21,22 @@ public class PDA
      * This is the main event loop for our PDA program
      */
     public void runEventLoop() {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
+        boolean shouldContinue = true;
+        while (shouldContinue) {
             System.out.println("How old are you?");
-            int LOWER_BOUND = 0;
-            int age;
+            System.out.println("Enter 0 to exit this program.");
+            Scanner scanner = new Scanner(System.in);
+            int LOWER_BOUND = 13;
+            int age = scanner.nextInt();
             try {
-                if (age < LOWER_BOUND) {
-                    System.out.println(age + " is too young!!");
-                } else {
-                    System.out.println("Computations go here");
-                }
-                age = scanner.nextInt();
-                System.out.println(age);
+                // don't repeat age
             } catch (InputMismatchException error) {
-                scanner.next();
                 System.out.println("Please enter an integer");
+            }
+            if (age < LOWER_BOUND) {
+                System.out.println(age + " is too young!!");
+            } else {
+                System.out.println("Computations go here");
             }
         }
     }
