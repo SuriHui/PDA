@@ -23,20 +23,26 @@ public class PDA
     public void runEventLoop() {
         boolean shouldContinue = true;
         while (shouldContinue) {
-            System.out.println("How old are you?");
-            System.out.println("Enter 0 to exit this program.");
             Scanner scanner = new Scanner(System.in);
-            int LOWER_BOUND = 13;
             int age = scanner.nextInt();
+            System.out.println("How old are you?");
+            if (age == 0)  {
+                shouldContinue = false;
+            }
+            int LOWER_BOUND = 0;
+            int UPPER_BOUND = 0;
+            LOWER_BOUND = age/2 + 7;
+            UPPER_BOUND = (age - 7) * 2;
+            System.out.println("Enter 0 to quit the program");
             try {
-                // don't repeat age
+
             } catch (InputMismatchException error) {
                 System.out.println("Please enter an integer");
             }
             if (age < LOWER_BOUND) {
                 System.out.println(age + " is too young!!");
             } else {
-                System.out.println("Computations go here");
+                System.out.println("You can date between " + LOWER_BOUND + " and " + UPPER_BOUND);
             }
         }
     }
