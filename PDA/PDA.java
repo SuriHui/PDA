@@ -24,25 +24,30 @@ public class PDA
         boolean shouldContinue = true;
         while (shouldContinue) {
             Scanner scanner = new Scanner(System.in);
-            int age = scanner.nextInt();
-            System.out.println("How old are you?");
-            if (age == 0)  {
-                shouldContinue = false;
-            }
-            int LOWER_BOUND = 0;
-            int UPPER_BOUND = 0;
-            LOWER_BOUND = age/2 + 7;
-            UPPER_BOUND = (age - 7) * 2;
-            System.out.println("Enter 0 to quit the program");
+            int age = -1;
             try {
-
+                age = scanner.nextInt();                    
             } catch (InputMismatchException error) {
                 System.out.println("Please enter an integer");
             }
-            if (age < LOWER_BOUND) {
-                System.out.println(age + " is too young!!");
+
+            if (age == 0)  {
+                shouldContinue = false;
+            } else if (age == -1) {
+                System.out.print("");
             } else {
-                System.out.println("You can date between " + LOWER_BOUND + " and " + UPPER_BOUND);
+                System.out.println("How old are you?");
+                int LOWER_BOUND = 0;
+                int UPPER_BOUND = 0;
+                LOWER_BOUND = age/2 + 7;
+                UPPER_BOUND = (age - 7) * 2;
+                System.out.println("Enter 0 to quit the program");
+                if (age < LOWER_BOUND) {
+                    System.out.println(age + " is too young!!");
+                } else {
+                    System.out.println("You can date between " + LOWER_BOUND + " and " + UPPER_BOUND);
+                }
+
             }
         }
     }
