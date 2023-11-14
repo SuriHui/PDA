@@ -6,6 +6,7 @@
  */
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.lang.Math;
 public class PDA
 {
     /**
@@ -22,48 +23,51 @@ public class PDA
      */
     public void runEventLoop() {
         boolean shouldContinue = true;
-        boolean question = true;
-        while (question) {
-            while (shouldContinue==true) {
-                System.out.println("How old are you?");
-                Scanner scanner = new Scanner(System.in);
-                int age = -1;
-                try {
-                    age = scanner.nextInt();                    
-                } catch (InputMismatchException error) {
-                    System.out.println("Please enter an integer");
-                }
-                if (age == 0)  {
-                    shouldContinue = false;
-                } else if (age == -1) {
-                    System.out.print("");
+        while (shouldContinue==true) {
+            System.out.println("How old are you?");
+            Scanner scanner = new Scanner(System.in);
+            int age = -1;
+            try {
+                age = scanner.nextInt();                    
+            } catch (InputMismatchException error) {
+                System.out.println("Please enter an integer");
+            }
+            if (age == 0)  {
+                shouldContinue = false;
+            } else if (age == -1) {
+                System.out.print("");
+            } else {
+                float LOWER_BOUND = 0;
+                float UPPER_BOUND = 0;
+                LOWER_BOUND = age/2 + 7;
+                UPPER_BOUND = (age - 7) * 2;
+                if (age < LOWER_BOUND) {
+                    System.out.println(age + " is too young!!");
+                } else if (age > UPPER_BOUND) {
+                    System.out.println(age + " is too young!!");
                 } else {
-                    int LOWER_BOUND = 0;
-                    int UPPER_BOUND = 0;
-                    LOWER_BOUND = age/2 + 7;
-                    UPPER_BOUND = (age - 7) * 2;
-                    if (age < LOWER_BOUND) {
-                        System.out.println(age + " is too young!!");
-                    } else if (age > UPPER_BOUND) {
-                        System.out.println(age + " is too young!!");
-                    } else {
-                        System.out.println("You can date between " + LOWER_BOUND + " and " + UPPER_BOUND);
-                    }
-                    System.out.println("Press 0 to quit the program.");
-                    System.out.println("Press 1 if you wish to continue.");
-                    Scanner scr = new Scanner(System.in);
-                    int input = scr.nextInt();
+                    System.out.println("You can date between " + Math.ceil(LOWER_BOUND) + " and " + Math.floor(UPPER_BOUND));
+                }
+                System.out.println("Enter 0 to quit the program.");
+                System.out.println("Enter anything if you wish to continue.");
+                Scanner scr = new Scanner(System.in);
+                int input;
+                try {
+                    input = scanner.nextInt();
                     if (input == 0){
-                        System.out.println("Thank you for your time! I hope you have a lovely day!");
                         shouldContinue = false;
                     }
+                } catch (InputMismatchException error) {
+
                 }
             }
         }
+        System.out.println("Thank you for your time! I hope you have a lovely day!");
     }
 
     /**
      * The main method instantiates and runs the program
+
      */
     public static void main (String[] args) {
         PDA pda = new PDA();
