@@ -41,12 +41,14 @@ public class PDA
                 float UPPER_BOUND = 0;
                 LOWER_BOUND = age/2 + 7;
                 UPPER_BOUND = (age - 7) * 2;
+                Math.ceil(LOWER_BOUND);
+                Math.floor(UPPER_BOUND);
                 if (age < LOWER_BOUND) {
                     System.out.println(age + " is too young!!");
                 } else if (age > UPPER_BOUND) {
                     System.out.println(age + " is too young!!");
                 } else {
-                    System.out.println("You can date between " + Math.ceil(LOWER_BOUND) + " and " + Math.floor(UPPER_BOUND));
+                    System.out.println("You can date between " + LOWER_BOUND + " and " + UPPER_BOUND);
                 }
                 System.out.println("Enter 0 to quit the program.");
                 System.out.println("Enter anything if you wish to continue.");
