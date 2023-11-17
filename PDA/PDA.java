@@ -24,47 +24,44 @@ public class PDA
     public void runEventLoop() {
         boolean shouldContinue = true;
         while (shouldContinue==true) {
-            System.out.println("How old are you?");
+            System.out.print("Your age: ");
             Scanner scanner = new Scanner(System.in);
-            int age = -1;
+            double age;
             try {
-                age = scanner.nextInt();                    
-            } catch (InputMismatchException error) {
-                System.out.println("Please enter an integer");
-            }
-            if (age == 0)  {
-                shouldContinue = false;
-            } else if (age == -1) {
-                System.out.print("");
-            } else {
-                float LOWER_BOUND = 0;
-                float UPPER_BOUND = 0;
-                LOWER_BOUND = age/2 + 7;
-                UPPER_BOUND = (age - 7) * 2;
-                Math.ceil(LOWER_BOUND);
-                Math.floor(UPPER_BOUND);
-                if (age < LOWER_BOUND) {
-                    System.out.println(age + " is too young!!");
-                } else if (age > UPPER_BOUND) {
-                    System.out.println(age + " is too young!!");
-                } else {
-                    System.out.println("You can date between " + LOWER_BOUND + " and " + UPPER_BOUND);
-                }
-                System.out.println("Enter 0 to quit the program.");
-                System.out.println("Enter anything if you wish to continue.");
-                Scanner scr = new Scanner(System.in);
-                int input;
-                try {
-                    input = scanner.nextInt();
-                    if (input == 0){
+                age = scanner.nextDouble();    
+                if (shouldContinue)  {
+                    int yong = getYoungerAge(age);
+                    int ol = getOlderAge(age);
+
+                    if (age < yong) {
+                        System.out.println("\n" + (int) age + " is too young!!\n");
+                    } else if (age > ol) {
+                        System.out.println("\n" + (int) age + " is too young!!\n");
+                    } else {
+                        System.out.println("\nYou can date between " + yong + " and " + ol + "\n");
+                    }
+                    System.out.println("Enter 0 to quit the program.\n");
+                    System.out.println("Enter anything if you wish to continue.");
+                    age = scanner.nextInt();
+                    if (age == 0) {
                         shouldContinue = false;
                     }
-                } catch (InputMismatchException error) {
-
                 }
+            } catch (InputMismatchException error) {
+                System.out.println("\nPlease enter an integer.\n");
             }
         }
-        System.out.println("Thank you for your time! I hope you have a lovely day!");
+        System.out.println("\nThank you for your time! I hope you have a lovely day!");
+    }
+
+    public int getYoungerAge(double age) {
+        int LOWER_BOUND = (int) Math.ceil((age/2) + 7);
+        return LOWER_BOUND;
+    }
+
+    public int getOlderAge(double age) {
+        int UPPER_BOUND = (int) Math.floor((age-7) * 2);
+        return UPPER_BOUND;
     }
 
     /**
