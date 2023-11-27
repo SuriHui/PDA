@@ -32,7 +32,6 @@ public class PDA
                 if (shouldContinue)  {
                     int yong = getYoungerAge(age);
                     int ol = getOlderAge(age);
-
                     if (age < yong) {
                         System.out.println("\n" + (int) age + " is too young!!\n");
                     } else if (age > ol) {
